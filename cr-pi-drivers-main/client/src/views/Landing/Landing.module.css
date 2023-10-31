@@ -1,0 +1,12 @@
+.landing{
+    text-align: center;
+}
+
+button{
+    margin: 0 5px;
+    background: none;
+    background-color: rgba(31, 110, 110, 0.233);
+    font-weight: bold;
+    border-radius: 10px ;
+    cursor: pointer;
+}
