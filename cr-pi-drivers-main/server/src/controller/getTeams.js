@@ -14,9 +14,14 @@ const getTeams = async (req, res) => {
       await Teams.findOrCreate({ where: { name: uniqueTeams[i] } });
     }
 
+    const allTeams = await Teams.findAll();
+
     return res
       .status(200)
-      .json({ message: "Equipos guardados en la base de datos" });
+      .json({
+        message: "Equipos guardados en la base de datos",
+        teams: allTeams,
+      });
   } catch (error) {
     console.error(error);
     return res

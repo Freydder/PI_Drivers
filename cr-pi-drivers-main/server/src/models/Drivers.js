@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      name: {
+      forename: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      last_name: {
+      surname: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       nationality: {
         type: DataTypes.STRING,
       },
-      birthday: {
+      dob: {
         type: DataTypes.STRING,
       },
     },

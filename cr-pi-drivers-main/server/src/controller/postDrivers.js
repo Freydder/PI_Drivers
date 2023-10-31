@@ -3,22 +3,22 @@ const { Drivers, Teams } = require("../db");
 const createDriver = async (req, res) => {
   try {
     const {
-      name,
-      last_name,
+      forename,
+      surname,
       description,
       image,
       nationality,
-      birthday,
+      dob,
       teams,
     } = req.body;
 
     if (
-      !name ||
-      !last_name ||
+      !forename ||
+      !surname ||
       !description ||
       !image ||
       !nationality ||
-      !birthday ||
+      !dob ||
       !teams ||
       !teams.length
     ) {
@@ -27,12 +27,12 @@ const createDriver = async (req, res) => {
 
     // Crear el conductor en la base de datos
     const driver = await Drivers.create({
-      name,
-      last_name,
+      forename,
+      surname,
       description,
       image,
       nationality,
-      birthday,
+      dob,
     });
 
     // Buscar los equipos relacionados en la base de datos
