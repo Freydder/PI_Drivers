@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import style from "./NavBar.module.css";
-import { filterByTeam } from "../../redux/action";
+import { filterByTeam, filterByOrigin } from "../../redux/action";
 import { useDispatch } from "react-redux";
 
 function NavBar({ handleSearch, teams }) {
@@ -12,6 +12,11 @@ function NavBar({ handleSearch, teams }) {
   const filterTeam = (e) => {
     const teamName = e.target.value;
     dispatch(filterByTeam(teamName));
+  };
+
+  const filterOrigin = (e) => {
+    const filter = e.target.value;
+    dispatch(filterByOrigin(filter));
   };
 
   return (
@@ -34,6 +39,11 @@ function NavBar({ handleSearch, teams }) {
           ))}
         </select>
       </div>
+      <select onChange={(e) => filterOrigin(e)}>
+        <option>Seleccionar Opcion</option>
+        <option>Base de Datos</option>
+        <option>API</option>
+      </select>
     </div>
   );
 }

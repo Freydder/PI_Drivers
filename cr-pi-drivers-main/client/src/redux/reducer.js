@@ -1,4 +1,10 @@
-import { GET_NAME, GET_DRIVERS, FILTER_BY_TEAM, GET_TEAMS } from "./action";
+import {
+  GET_NAME,
+  GET_DRIVERS,
+  FILTER_BY_TEAM,
+  GET_TEAMS,
+  FILTER_BY_ORIGIN,
+} from "./action";
 
 const initialState = {
   drivers: [],
@@ -24,11 +30,15 @@ const reducer = (state = initialState, action) => {
         ) {
           return true;
         }
+        if (typeof driver.teams === "string") {
+          const teamsArray = driver.teams.split(",").map((team) => team.trim());
+          return teamsArray.includes(teamName);
+        }
         return false;
       });
       return {
         ...state,
-        filteredDriver,
+        filteredDriver: filteredDriver,
       };
 
     case GET_TEAMS:
@@ -36,6 +46,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         teams: action.payload,
       };
+    case FILTER_BY_ORIGIN:
+      const origin = action.payload;
+      const driverFilter = state.drivers;
+
+      const filter = driverFilter.filter((driver) => {
+        if (origin === "database") {
+          return driver.createdinDB === true;
+        }
+        if (origin === "api") {
+          return driver.createdinDB === false;
+        }
+        return false;
+      });
+      return {
+        ...state,
+        filteredDriver: filter,
+      };
+
     default:
       return state;
   }

@@ -3,6 +3,7 @@ export const GET_NAME = "GET_NAME";
 export const GET_DRIVERS = "GET_DRIVERS";
 export const FILTER_BY_TEAM = "FILTER_BY_TEAM";
 export const GET_TEAMS = "GET_TEAMS";
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 
 export const getByName = (name) => {
   return async (dispatch) => {
@@ -60,6 +61,19 @@ export const getTeams = () => {
       dispatch({
         type: GET_TEAMS,
         payload: teams.data,
+      });
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+};
+
+export const filterByOrigin = (option) => {
+  return function (dispatch) {
+    try {
+      dispatch({
+        type: FILTER_BY_ORIGIN,
+        payload: option,
       });
     } catch (error) {
       throw new Error(error.message);
