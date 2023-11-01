@@ -1,9 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
+
 module.exports = (sequelize) => {
-  // defino el modelo
   sequelize.define(
     "Drivers",
     {
@@ -33,6 +31,11 @@ module.exports = (sequelize) => {
       },
       dob: {
         type: DataTypes.STRING,
+      },
+      createdinDB: { 
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false, 
       },
     },
     {

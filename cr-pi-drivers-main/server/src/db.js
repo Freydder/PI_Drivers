@@ -6,7 +6,7 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/drivers`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pidrivers`,
   {
     logging: false,
     native: false,
@@ -34,10 +34,11 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Drivers, Teams } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
+
+const { Drivers, Teams } = sequelize.models;
 
 Drivers.belongsToMany(Teams, { through: "DriverTeams", timestamps: false });
 Teams.belongsToMany(Drivers, { through: "DriverTeams", timestamps: false });
